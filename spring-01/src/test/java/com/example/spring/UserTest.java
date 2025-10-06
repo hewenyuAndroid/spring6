@@ -1,9 +1,13 @@
 package com.example.spring;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTest {
+
+    private Logger logger = LoggerFactory.getLogger(UserTest.class);
 
     @Test
     public void testUserObject() {
@@ -13,6 +17,7 @@ public class UserTest {
         User user = (User) context.getBean("user");
         // 执行 user对象的方法
         user.add();
+        logger.info("### testUserObject() 执行成功");
     }
 
 }
