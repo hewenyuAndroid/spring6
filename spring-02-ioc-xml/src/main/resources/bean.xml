@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="com.example.spring.User"/>
+
+    <!-- 当一个类配置了多个bean对象，此时通过 该类的 class 对象获取 bean 时会报错 -->
+    <!--    <bean id="user1" class="com.example.spring.User"/>-->
+
+    <bean id="userDao" class="com.example.spring.dao.impl.UserDaoImpl"/>
+
+    <!-- 当一个接口存在多个子类bean对象时，通过接口的 class 对象获取bean对象时会报错 -->
+<!--    <bean id="personDao" class="com.example.spring.dao.impl.PersonDaoImpl"/>-->
+
+</beans>
