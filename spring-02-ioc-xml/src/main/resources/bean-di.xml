@@ -9,4 +9,10 @@
         <property name="author" value="he"/>
     </bean>
 
+    <!-- 基于构造器注入 -->
+    <bean id="book1" class="com.example.spring.di.Book">
+        <constructor-arg name="name" value="操作系统"></constructor-arg>
+        <constructor-arg name="author" value="hehe"></constructor-arg>
+    </bean>
+
 </beans>
