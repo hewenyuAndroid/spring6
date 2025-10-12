@@ -19,6 +19,10 @@ public class BookTest {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean-di.xml");
         Book bean = applicationContext.getBean("book1", Book.class);
         System.out.println(bean);
+
+        Book book2 = applicationContext.getBean("book2", Book.class);
+        System.out.println(book2);
+
     }
 
 

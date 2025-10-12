@@ -15,4 +15,40 @@
         <constructor-arg name="author" value="hehe"></constructor-arg>
     </bean>
 
+    <!-- 基于构造器注入，null值处理 -->
+    <bean id="book2" class="com.example.spring.di.Book">
+        <constructor-arg name="name" value="操作系统"></constructor-arg>
+        <constructor-arg name="author">
+            <value>null</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="dept" class="com.example.spring.Dept">
+        <constructor-arg name="deptName" value="销售部"></constructor-arg>
+        <constructor-arg name="deptId" value="T001"></constructor-arg>
+    </bean>
+
+    <bean id="emp1" class="com.example.spring.Emp">
+        <constructor-arg name="empId" value="001"></constructor-arg>
+        <constructor-arg name="empName" value="张三"></constructor-arg>
+        <!-- 自定义对象属性使用ref关联，外部bean会被管理 -->
+        <constructor-arg name="dept" ref="dept"></constructor-arg>
+    </bean>
+
+    <bean id="emp2" class="com.example.spring.Emp">
+        <constructor-arg name="empId" value="0012"></constructor-arg>
+        <constructor-arg name="empName" value="李四"></constructor-arg>
+        <constructor-arg name="dept">
+            <!--
+                在一个bean 内部再声明一个bean，里面的bean就被称为内部bean
+                内部bean只能用于给属性赋值，不能在外部通过ioc容器获取，因此可以省略id属性
+            -->
+            <bean class="com.example.spring.Dept">
+                <constructor-arg name="deptId" value="T002"></constructor-arg>
+                <constructor-arg name="deptName" value="技术部"></constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+
 </beans>
