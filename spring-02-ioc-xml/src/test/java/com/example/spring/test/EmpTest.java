@@ -22,4 +22,12 @@ public class EmpTest {
         System.out.println(emp);
     }
 
+    @Test
+    public void testEmp3(){
+        // 内部bean引入方式
+        ClassPathXmlApplicationContext application = new ClassPathXmlApplicationContext("bean-di.xml");
+        Emp emp = application.getBean("emp3", Emp.class);
+        System.out.println(emp);
+    }
+
 }

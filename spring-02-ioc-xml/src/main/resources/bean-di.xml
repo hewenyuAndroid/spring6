@@ -50,5 +50,12 @@
         </constructor-arg>
     </bean>
 
+    <bean id="emp3" class="com.example.spring.Emp">
+        <constructor-arg name="empId" value="0013"></constructor-arg>
+        <constructor-arg name="empName" value="王五"></constructor-arg>
+        <constructor-arg name="dept" ref="dept"></constructor-arg>
+        <property name="dept.deptId" value="T003"></property>
+        <property name="dept.deptName" value="研发部"></property>
+    </bean>
 
 </beans>
