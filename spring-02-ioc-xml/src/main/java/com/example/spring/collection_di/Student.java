@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -18,5 +19,7 @@ public class Student {
     private List<Course> courseList;
 
     private List<String> scoreList;
+
+    private Map<String, Teacher> tMap;
 
 }

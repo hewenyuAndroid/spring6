@@ -52,5 +52,35 @@
         <property name="scoreList" ref="scoreList"></property>
     </bean>
 
+    <!--
+        注入 map 集合
+    -->
+    <bean id="t1" class="com.example.spring.collection_di.Teacher">
+        <constructor-arg name="tId" value="t01"></constructor-arg>
+        <constructor-arg name="tName" value="老师01"></constructor-arg>
+    </bean>
+    <bean id="t2" class="com.example.spring.collection_di.Teacher">
+        <constructor-arg name="tId" value="t02"></constructor-arg>
+        <constructor-arg name="tName" value="老师02"></constructor-arg>
+    </bean>
+    <bean id="stud3" class="com.example.spring.collection_di.Student">
+        <property name="id" value="003"></property>
+        <property name="name" value="王五"></property>
+        <property name="courseList" ref="courseList"></property>
+        <property name="scoreList" ref="scoreList"></property>
+        <!-- 注入map -->
+        <property name="TMap">
+            <map key-type="java.lang.String" value-type="com.example.spring.collection_di.Teacher">
+                <entry key="java老师" value-ref="t1"></entry>
+                <entry>
+                    <key>
+                        <value>c++老师</value>
+                    </key>
+                    <ref bean="t2"></ref>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
 
 </beans>

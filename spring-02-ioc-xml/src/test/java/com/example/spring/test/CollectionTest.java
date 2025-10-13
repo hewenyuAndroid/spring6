@@ -20,4 +20,11 @@ public class CollectionTest {
         System.out.println("stud2: " + stud2);
     }
 
+    @Test
+    public void testListDi3() {
+        ClassPathXmlApplicationContext application = new ClassPathXmlApplicationContext("bean-collection-di.xml");
+        Student stud3 = application.getBean("stud3", Student.class);
+        System.out.println("stud3: " + stud3);
+    }
+
 }
