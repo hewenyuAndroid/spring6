@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="java" class="com.example.spring.collection_di.Course">
+        <constructor-arg name="id" value="1"></constructor-arg>
+        <constructor-arg name="name" value="java"></constructor-arg>
+    </bean>
+
+    <bean id="c++" class="com.example.spring.collection_di.Course">
+        <constructor-arg name="id" value="2"></constructor-arg>
+        <constructor-arg name="name" value="c++"></constructor-arg>
+    </bean>
+
+    <bean id="stud1" class="com.example.spring.collection_di.Student">
+        <property name="id" value="001"></property>
+        <property name="name" value="张三"></property>
+        <!-- 注入 对象列表 -->
+        <property name="courseList">
+            <list>
+                <ref bean="java"/>
+                <ref bean="c++"/>
+            </list>
+        </property>
+        <!-- 注入基础类型列表 -->
+        <property name="scoreList">
+            <list>
+                <value>100</value>
+                <value>99+</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 定义外部的数组 -->
+    <util:list id="courseList">
+        <ref bean="java"/>
+        <ref bean="c++"/>
+    </util:list>
+    <util:list id="scoreList">
+        <value>101</value>
+        <value>99+</value>
+    </util:list>
+    <bean id="stud2" class="com.example.spring.collection_di.Student">
+        <property name="id" value="002"></property>
+        <property name="name" value="李四"></property>
+        <!-- 使用外部定义的数组 -->
+        <property name="courseList" ref="courseList"></property>
+        <property name="scoreList" ref="scoreList"></property>
+    </bean>
+
+
+</beans>
