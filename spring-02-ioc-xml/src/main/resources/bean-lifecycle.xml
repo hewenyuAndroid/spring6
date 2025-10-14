@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        bean的生命周期
+        init-method="initMethod"    // 配置初始化方法
+        destroy-method="destroyMethod"  // 配置销毁方法
+    -->
+
+    <bean id="stock1" class="com.example.spring.lifecycle.Stock"
+          init-method="initMethod"
+          destroy-method="destroyMethod"
+    >
+        <constructor-arg name="stockName" value="上证指数"></constructor-arg>
+        <constructor-arg name="stockCode" value="1A0001"></constructor-arg>
+    </bean>
+
+    <bean id="stock2" class="com.example.spring.lifecycle.Stock"
+          init-method="initMethod"
+          destroy-method="destroyMethod"
+    >
+        <property name="stockName" value="上证指数"></property>
+        <property name="stockCode" value="1A0001"></property>
+    </bean>
+
+</beans>
