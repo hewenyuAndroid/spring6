@@ -27,4 +27,11 @@ public class CollectionTest {
         System.out.println("stud3: " + stud3);
     }
 
+    @Test
+    public void testList04() {
+        ClassPathXmlApplicationContext application = new ClassPathXmlApplicationContext("bean-p-namespace-di.xml");
+        Student stud1 = application.getBean("stud1", Student.class);
+        System.out.println("stud1: " + stud1);
+    }
+
 }

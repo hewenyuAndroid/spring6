@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+">
+
+    <!--
+        xmlns:p="http://www.springframework.org/schema/p"
+        引入 p 命名空间
+    -->
+
+    <!-- 使用默认方式配置 -->
+    <bean id="teach1" class="com.example.spring.collection_di.Teacher">
+        <property name="TId" value="t001"></property>
+        <property name="TName" value="JavaTeacher"></property>
+    </bean>
+    <!-- 使用 p 命名空间 -->
+    <bean id="teach2" class="com.example.spring.collection_di.Teacher"
+          p:TId="t002"
+          p:TName="c++Teacher"
+    ></bean>
+
+    <util:map id="teacherMap">
+        <entry key="javaTeacher" value-ref="teach1"/>
+        <entry key="c++Teacher" value-ref="teach2"/>
+    </util:map>
+
+    <util:list id="scoreList">
+        <value>100</value>
+        <value>99</value>
+    </util:list>
+
+    <bean id="stud1" class="com.example.spring.collection_di.Student"
+          p:id="s001"
+          p:name="张三"
+          p:TMap-ref="teacherMap"
+          p:scoreList-ref="scoreList"
+    >
+    </bean>
+
+</beans>
