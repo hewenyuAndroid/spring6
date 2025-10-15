@@ -128,3 +128,32 @@ stock2: Stock(stockName=上证指数, stockCode=1A0001)
 Stock destroyMethod...
 ```
 
+
+## `FactoryBean`
+
+`FactoryBean` 是 `Spring` 提供的一种整合第三方框架的常用机制。和普通的 `Bean` 不同，配置一个 `FactoryBean` 类型的 `Bean`，在获取 `Bean` 的时候得到的不是 `class` 属性中配置的这个类的对象，而是 `FactoryBean.getObject()` 方法的返回值。通过这种机制，`spring` 可以帮助我们把复杂组件创建的详细过程和繁琐的细节屏蔽起来，只把最简洁的使用界面展示出来。
+
+```java
+package org.springframework.beans.factory;
+
+import org.springframework.lang.Nullable;
+
+public interface FactoryBean<T> {
+    String OBJECT_TYPE_ATTRIBUTE = "factoryBeanObjectType";
+
+    // 返回目标 bean 对象
+    @Nullable
+    T getObject() throws Exception;
+
+    // 目标对象类型
+    @Nullable
+    Class<?> getObjectType();
+
+    // 作用域是否是 singleton
+    default boolean isSingleton() {
+        return true;
+    }
+}
+```
+
+

@@ -42,4 +42,10 @@
     -->
     <bean id="myBeanPostProcessor" class="com.example.spring.processor.MyBeanPostProcessor"></bean>
 
+
+    <!--
+        配置的bean对象如果是 FactoryBean 的子类，那么 getBean() 获取的 bean 对象为 FactoryBean.getObject() 返回的对象
+    -->
+    <bean id="stockFactoryBean" class="com.example.spring.lifecycle.factorybean.StockFactoryBean"></bean>
+
 </beans>

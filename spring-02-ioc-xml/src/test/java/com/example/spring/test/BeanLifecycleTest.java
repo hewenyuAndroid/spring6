@@ -40,5 +40,12 @@ public class BeanLifecycleTest {
 
     }
 
+    @Test
+    public void testFactoryBean() {
+        ClassPathXmlApplicationContext application = new ClassPathXmlApplicationContext("bean-lifecycle.xml");
+        Stock stockFactoryBean = application.getBean("stockFactoryBean", Stock.class);
+        System.out.println("stockFactoryBean: " + stockFactoryBean);
+    }
+
 
 }
