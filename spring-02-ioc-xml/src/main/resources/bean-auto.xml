@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="com.example.spring.User">
+        <property name="name" value="张三"/>
+        <property name="age" value="20"/>
+    </bean>
+
+    <!-- dao -->
+    <bean id="userDao" class="com.example.spring.auto.dao.impl.UserDaoImpl"></bean>
+
+    <!--
+        service
+        使用 bean 标签的 autowire 属性配置自动注入
+        配置 autowire=byType 表示根据类型自动注入
+            若 ioc 容器中，没有任何一个兼容类型的 bean 能为属性赋值，则该属性不装配，即为默认值 null
+            若在 ioc 容器中，有多个兼容类型的 bean 为属性赋值，则会抛出异常
+        配置 autowire=byName 表示根据名称自动注入
+
+    -->
+    <bean id="userService" class="com.example.spring.auto.service.impl.UserServiceImpl" autowire="byType"></bean>
+
+    <!-- controller -->
+    <bean id="userController" class="com.example.spring.auto.controller.UserController" autowire="byType"></bean>
+
+</beans>
