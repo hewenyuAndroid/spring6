@@ -64,4 +64,56 @@ stock2: Stock(stockName=上证指数, stockCode=1A0001)
 Stock destroyMethod...
 ```
 
+## `BeanPostProcessor` bean 的后置处理器
+
+`Bean` 的后置处理器会在生命周期的 初始化操作(`init-method`) 前后添加额外的操作，`Bean` 的后置处理器需要实现 `BeanPostProcessor` 接口，此外需要将实现该接口的 bean 后置处理器配置到 ioc 容器中；
+
+需要注意的是 `Bean` 的后置处理器作用的是整个 `IOC` 容器中的所有 `bean`，而不是某个单独的 `bean` 对象;
+
+```xml
+    <!--
+        配置 bean 的后置处理器，后置处理器只有配置到ioc容器中才会生效
+    -->
+    <bean id="myBeanPostProcessor" class="com.example.spring.processor.MyBeanPostProcessor"></bean>
+```
+
+[`MyBeanPostProcessor`](./src/main/java/com/example/spring/processor/MyBeanPostProcessor.java)
+
+
+```java
+package org.springframework.beans.factory.config;
+
+import org.springframework.beans.BeansException;
+import org.springframework.lang.Nullable;
+
+public interface BeanPostProcessor {
+    
+    // bean 对象创建并完成属性注入后回调
+    @Nullable
+    default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        return bean;
+    }
+
+    // bean 对象执行完 init-method 初始化方法之后回调
+    @Nullable
+    default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        return bean;
+    }
+}
+```
+
+添加 bean 后置处理器后，启动 spring 容器，执行日志如下
+
+```text
+Stock 无参构造..
+Stock setStockName(): stockName=上证指数
+Stock setStockCode(): stockCode=1A0001
+// 完成 setter 注入后，在 init-method 方法之前执行 bean后置处理器的 postProcessBeforeInitialization() 回调方法
+MyBeanPostProcessor: postProcessBeforeInitialization() bean=Stock(stockName=上证指数, stockCode=1A0001), beanName=stock2
+Stock initMethod...
+// 在 init-method 方法执行完毕后，执行 bean后置处理器的 postProcessAfterInitialization() 回调方法
+MyBeanPostProcessor: postProcessAfterInitialization() bean=Stock(stockName=上证指数, stockCode=1A0001), beanName=stock2
+stock2: Stock(stockName=上证指数, stockCode=1A0001)
+Stock destroyMethod...
+```
 
