@@ -25,6 +25,18 @@
         <property name="stockCode" value="1A0001"></property>
     </bean>
 
+    <!-- 单例 -->
+    <bean id="stockSingleton" class="com.example.spring.lifecycle.Stock" scope="singleton">
+        <property name="stockName" value="上证指数"></property>
+        <property name="stockCode" value="1A0001"></property>
+    </bean>
+
+    <!-- 原型 -->
+    <bean id="stockPrototype" class="com.example.spring.lifecycle.Stock" scope="prototype">
+        <property name="stockName" value="上证指数"></property>
+        <property name="stockCode" value="1A0001"></property>
+    </bean>
+
     <!--
         配置 bean 的后置处理器，后置处理器只有配置到ioc容器中才会生效
     -->

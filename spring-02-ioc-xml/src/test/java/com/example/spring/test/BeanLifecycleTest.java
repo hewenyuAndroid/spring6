@@ -24,5 +24,21 @@ public class BeanLifecycleTest {
         application.close();
     }
 
+    @Test
+    public void testScope() {
+        ClassPathXmlApplicationContext application = new ClassPathXmlApplicationContext("bean-lifecycle.xml");
+        // 获取单例对象
+        Stock stockSingleton1 = application.getBean("stockSingleton", Stock.class);
+        Stock stockSingleton2 = application.getBean("stockSingleton", Stock.class);
+
+        // 获取原型对象
+        Stock stockPrototype1 = application.getBean("stockPrototype", Stock.class);
+        Stock stockPrototype2 = application.getBean("stockPrototype", Stock.class);
+
+        System.out.println("testScope: stockSingleton1=" + stockSingleton1.hashCode() + ", stockSingleton2=" + stockSingleton2.hashCode() +
+                ", stockPrototype1=" + stockPrototype1.hashCode() + ", stockPrototype2=" + stockPrototype2.hashCode());
+
+    }
+
 
 }
