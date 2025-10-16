@@ -13,6 +13,7 @@
         <module>spring-01</module>
         <module>spring-02-ioc-xml</module>
         <module>spring-03-ioc-annotation</module>
+        <module>spring-04-myspring</module>
     </modules>
 
     <properties>
